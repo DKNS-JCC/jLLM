@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package View;
 
-/**
- *
- * @author jorge
- */
-public class View {
+
+import Controller.Controller;
+
+
+public abstract class View {
+    
+    protected Controller c;
+    
+    public abstract void showAppStart(String msg);
+    public abstract void showMainMenu();
+    public abstract void showAppEnd(String msg);
     
 }
