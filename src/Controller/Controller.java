@@ -6,6 +6,7 @@ package Controller;
 
 import Model.Model;
 import View.View;
+import Model.IRepository;
 
 
 
@@ -13,6 +14,18 @@ import View.View;
  *
  * @author jorge
  */
-public class Controller {
-    
+public class Controller extends View {
+    View view;
+    Model model;
+    IRepository repository;
+    public Controller (Model model, View view, IRepository repository)
+    {
+        super(model, view, repository);
+    }
+
+    public void initApplication() {
+        view.showAppStart("Bienvenido a LamentableLM");
+        view.showMainMenu();
+        view.showAppEnd("Hasta la proxima!");
+    }
 }
