@@ -1,12 +1,16 @@
 
 package jllm;
+
 import View.View;
 import View.ConsoleView;
 import View.TTSView;
-import Model.Model;
+import Model.fakeModel;
+import Model.csvModel;
+import Model.XMLRepository;
+import Model.JSONRepository;
 import Controller.Controller;
+import Model.ILLM;
 import Model.IRepository;
-
 
 /**
  *
@@ -14,34 +18,29 @@ import Model.IRepository;
  */
 public class Main {
 
-
     public static void main(String[] args) {
         View view;
-        Model model;
-        IRepository repository;
+        IRepository repository = null;
+        ILLM modelType;
 
-        
-        if(args.length == 3){
-            view = getViewForoption(args[2]);
+        if (args.length == 3) {
+            view = getViewForOption(args[2]);
             repository = getRepositoryForOption(args[0]);
-            model = getModelForOption(args[1]);
-            System.out.println("Iniciando app en modo "+ args[0]+","+ args[1]+","+ args[2]);
-            
-        }else{
+            modelType = getModelForOption(args[1]);
+
+        } else {
             // Opciones por defecto:
-            System.out.println("Se esperaba llamada con 3 argumentos, creando en default");
             view = new ConsoleView();
-            repository = new MemoryRepository();
-            model = new fakeModel();
-            
+            repository = new XMLRepository();
+            modelType = new fakeModel();
         }
-        
-        Controller c = new Controller(model, view, repository);
-        
-        c.initApplication();  
+
+        Controller c = new Controller(view, repository, modelType);
+
+        c.initApplication();
     }
 
-    private static View getViewForoption(String arg) {
+    private static View getViewForOption(String arg) {
         switch (arg) {
             case "consola":
                 return new ConsoleView();
@@ -51,8 +50,9 @@ public class Main {
                 return new ConsoleView();
         }
     }
-    private static IRepository getRepositoryForOption(String arg){
-        switch (arg){
+
+    private static IRepository getRepositoryForOption(String arg) {
+        switch (arg) {
             case "xml":
                 return new XMLRepository();
             case "json":
@@ -61,17 +61,18 @@ public class Main {
                 return new XMLRepository();
         }
     }
-    private static Model getModelForOption(String arg){
-        switch (arg){
+
+    private static ILLM getModelForOption(String arg) {
+        switch (arg) {
             case "fake":
                 return new fakeModel();
             case "csv":
-                return new CSVModel();
+                return new csvModel();
             case "smart":
-                return new smartModel();
+                // return new smartModel();
             default:
                 return new fakeModel();
         }
     }
-    
+
 }

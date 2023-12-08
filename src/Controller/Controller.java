@@ -4,23 +4,28 @@
  */
 package Controller;
 
-import Model.Model;
+import View.ConsoleView;
+import View.TTSView;
 import View.View;
+import Model.fakeModel;
+import Model.csvModel;
+import Model.ILLM;
 import Model.IRepository;
-
-
 
 /**
  *
  * @author jorge
  */
-public class Controller extends View {
+public class Controller {
     View view;
-    Model model;
     IRepository repository;
-    public Controller (Model model, View view, IRepository repository)
-    {
-        super(model, view, repository);
+    ILLM modelType;
+
+    public Controller(View viewType, IRepository repositoryType, ILLM modelType) {
+        this.view = viewType;
+        this.repository = repositoryType;
+        this.modelType = modelType;
+        view.setController(this);
     }
 
     public void initApplication() {
@@ -28,4 +33,11 @@ public class Controller extends View {
         view.showMainMenu();
         view.showAppEnd("Hasta la proxima!");
     }
+
+    public void startConversation (){
+        
+        
+    }
+
+
 }

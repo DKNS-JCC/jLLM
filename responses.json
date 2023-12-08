@@ -1,0 +1,23 @@
+{
+    "type": "saludo",
+    "frases": [
+        "Hola",
+        "Buenos días",
+        "Buenas tardes",
+        "Buenas noches",
+        "¿Qué tal?",
+        "¿Cómo estás?",
+        "¿Cómo te va?",
+        "¿Qué hay?",
+        "¿Qué pasa?",
+        "¿Qué onda?",
+        "¿Qué tal la vida?",
+        "¿Qué tal el día?",
+        "¿Qué tal la familia?",
+        "¿Qué tal el trabajo?",
+        "¿Qué tal el estudio?",
+        "¿Qué tal el amor?",
+        "¿Qué tal la salud?",
+        "¿Qué tal la vida?"
+    ]
+}

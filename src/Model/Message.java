@@ -6,17 +6,14 @@ public class Message {
     private String date;
     private String content;
 
-    //Constructor
+    // Constructor
     public Message(String sender, String date, String content) {
         this.sender = sender;
         this.date = date;
         this.content = content;
     }
-    
-    //Methods
-    
-    
-    //Getters y Setters
+
+    // Getters y Setters
     public String getSender() {
         return sender;
     }
@@ -40,6 +37,4 @@ public class Message {
     public void setContent(String content) {
         this.content = content;
     }
-    
-    
 }

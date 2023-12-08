@@ -13,4 +13,7 @@ public abstract class View {
     public abstract void showMainMenu();
     public abstract void showAppEnd(String msg);
     
+    public void setController(Controller controller){
+        this.c=controller;
+    }
 }
