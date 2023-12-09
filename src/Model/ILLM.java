@@ -10,4 +10,5 @@ public interface ILLM
     public Message createMessage(String response);
     public void saveConversation(Message message);
     public ArrayList<Message> listConversations();
+    
 }

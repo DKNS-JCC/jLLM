@@ -30,7 +30,7 @@ public class Main {
 
         } else {
             // Opciones por defecto:
-            view = new ConsoleView();
+            view = new TTSView();
             repository = new XMLRepository();
             modelType = new fakeModel();
         }

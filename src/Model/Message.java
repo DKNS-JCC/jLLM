@@ -1,15 +1,13 @@
 
 package Model;
 
-import java.time.Instant;
-
 public class Message {
     private String sender;
-    private Instant date;
+    private String date;
     private String content;
 
     // Constructor
-    public Message(String sender, Instant date, String content) {
+    public Message(String sender, String date, String content) {
         this.sender = sender;
         this.date = date;
         this.content = content;
@@ -20,7 +18,7 @@ public class Message {
         return sender;
     }
 
-    public Instant getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -32,7 +30,7 @@ public class Message {
         this.sender = sender;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(String date) {
         this.date= date;
     }
 

@@ -8,11 +8,13 @@ public class XMLRepository implements IRepository
     public XMLRepository() {
     }
 
-    public boolean exportarChat(ArrayList<Chat> chats){
+    public boolean exportChat(ArrayList<Chat> chats){
+        
         return true;
     }
 
-    public ArrayList<Chat> importarChat(){
+    public ArrayList<Chat> importChat(){
         return new ArrayList<Chat>();
     }
+
 }

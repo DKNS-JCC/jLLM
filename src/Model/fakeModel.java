@@ -1,5 +1,7 @@
 package Model;
 
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +70,8 @@ public class fakeModel implements ILLM, IRepository {
 
     @Override
     public Message createMessage(String text) {
-        Message message = new Message(getIdentifier(), java.time.Instant.now(), text);
+        String formattedTimestamp = Instant.now().atZone(java.time.ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        Message message = new Message(getIdentifier(), formattedTimestamp, text);
         return message;
     }
 

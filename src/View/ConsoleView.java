@@ -10,6 +10,7 @@ import Model.Message;
 import com.coti.tools.Esdia;
 import com.coti.tools.Esdia.*;
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -45,7 +46,8 @@ public class ConsoleView extends View {
         do {
             System.out.println("1. Iniciar conversacion");
             System.out.println("2. Listar conversaciones");
-            System.out.println("3. Salir");
+            System.out.println("3. Importar/exportar conversaciones");
+            System.out.println("4. Salir");
 
             option = Esdia.readInt("Introduce una opcion: ");
 
@@ -61,17 +63,47 @@ public class ConsoleView extends View {
                     break;
                 case 3:
                     clearScreen();
+                    do {
+                        System.out.println("1. Importar conversaciones");
+                        System.out.println("2. Exportar conversaciones");
+                        System.out.println("3. Volver");
+
+                        option = Esdia.readInt("Introduce una opcion: ");
+
+                        switch (option) {
+                            case 1:
+                                clearScreen();
+                                // c.importChat();
+                                break;
+                            case 2:
+                                clearScreen();
+                                c.exportChat();
+                                break;
+                            case 3:
+                                clearScreen();
+                                break;
+                            default:
+                                System.out.println("Opcion incorrecta");
+                        }
+                    } while (option != 3);
+                    
+                    break;
+
+                case 4:
+                    clearScreen();
                     break;
                 default:
                     System.out.println("Opcion incorrecta");
             }
-        } while (option != 3);
+        }while(option!=4);
+
     }
 
     public void startConversation() {
         clearScreen();
         while (true) {
-            Message message = new Message(System.getProperty("user.name"), Instant.now(), Esdia.readString_ne("Prompt: "));
+            String formattedTimestamp = Instant.now().atZone(java.time.ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            Message message = new Message(System.getProperty("user.name"),formattedTimestamp , Esdia.readString_ne("Prompt: "));
             if (message.getContent().equals("/salir")) {
                 break;
             }
@@ -80,9 +112,8 @@ public class ConsoleView extends View {
             Message response = c.sendMessage(message);
             c.almacenaConversacion(response);
             for (Message messagep : c.listConversations()) {
-                System.out.println(String.format("%-35s | %20s | %-20s", messagep.getDate(), messagep.getSender(), messagep.getContent()));
+                System.out.println(String.format("%-15s | %-10s | %-20s", messagep.getDate(), messagep.getSender(), messagep.getContent()));
             }
-
         }
     }
 

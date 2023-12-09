@@ -3,6 +3,6 @@ import java.util.ArrayList;
 
 public interface IRepository 
 {
-    public ArrayList<Chat> importarChat();
-    public boolean exportarChat(ArrayList<Chat> chats);
+    public ArrayList<Chat> importChat();
+    public boolean exportChat(ArrayList<Chat> chats);
 }
