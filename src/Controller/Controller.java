@@ -9,6 +9,10 @@ import View.TTSView;
 import View.View;
 import Model.fakeModel;
 import Model.csvModel;
+import Model.Message;
+
+import java.util.ArrayList;
+
 import Model.ILLM;
 import Model.IRepository;
 
@@ -34,9 +38,20 @@ public class Controller {
         view.showAppEnd("Hasta la proxima!");
     }
 
-    public void startConversation (){
-        
-        
+    //We need to implement this method
+    public Message sendMessage(Message messagerecieved) {
+        String response = modelType.speak(messagerecieved.getContent());
+        Message response2 = modelType.createMessage(response);
+        return response2;
+    }
+
+    public void almacenaConversacion(Message message) {
+        modelType.saveConversation(message);
+    }
+
+    public ArrayList<Message> listConversations (){
+        ArrayList <Message> messages = modelType.listConversations();
+        return messages;
     }
 
 
