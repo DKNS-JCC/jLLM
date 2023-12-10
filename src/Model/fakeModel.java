@@ -63,7 +63,12 @@ public class fakeModel implements ILLM, IRepository {
             return "No soy una calculadora mister";
         } else if (text.contains("como")) {
             return "Comiendo lomo";
+        } else if (text.contains("chiste")) {
+            return "¿Qué le dice un jaguar a otro jaguar? Jaguar you?";
+        } else if (text.contains("aleatorio")) {
+            return "El numero aleatorio es: " + (int) (Math.random() * 100000000); // 0-100000000
         } else {
+
             return "No te entiendo";
         }       
     }

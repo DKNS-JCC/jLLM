@@ -33,9 +33,9 @@ public class Controller {
     }
 
     public void initApplication() {
-        view.showAppStart("Bienvenido a LamentableLM estoy a su servicio");
+        view.showAppStart("Hola, bienvenido a LamentableLM estoy a su servicio");
         view.showMainMenu();
-        view.showAppEnd("Hasta la proxima! Gracias por usar LamentableLM");
+        view.showAppEnd("Hasta la próxima! Gracias por usar LamentableLM");
     }
 
     //We need to implement this method
