@@ -33,9 +33,9 @@ public class Controller {
     }
 
     public void initApplication() {
-        view.showAppStart("Bienvenido a LamentableLM");
+        view.showAppStart("Bienvenido a LamentableLM estoy a su servicio");
         view.showMainMenu();
-        view.showAppEnd("Hasta la proxima!");
+        view.showAppEnd("Hasta la proxima! Gracias por usar LamentableLM");
     }
 
     //We need to implement this method
@@ -54,8 +54,8 @@ public class Controller {
         return messages;
     }
 
-    public boolean exportChat(){
-        return repository.exportChat();
+    public void exportarChat(){
+        modelType.exportarChat();
     }
 
 

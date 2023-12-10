@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class ConsoleView extends View {
 
-    Controller c;
+    private Controller c;
 
     public ConsoleView() {
         super();
@@ -55,7 +55,7 @@ public class ConsoleView extends View {
                 case 1:
                     clearScreen();    
                     startConversation();
-                    // saveChat();
+                    // c.saveChat();
                     break;
                 case 2:
                     clearScreen();
