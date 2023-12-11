@@ -49,17 +49,17 @@ public class JSONRepository implements IRepository {
       Gson gson = new Gson();
       try {
         String json = new String(Files.readAllBytes(ruta));
-        ArrayList<Chat> chats = gson.fromJson(
+        return gson.fromJson(
           json,
           new TypeToken<ArrayList<Chat>>() {}.getType()
         );
-        return chats;
+        
       } catch (Exception e) {
         System.out.println("Error al importar el chat" + e.getMessage());
       }
     } else {
       System.out.println("El archivo no existe en la ruta" + ruta);
     }
-    return new ArrayList<Chat>();
+    return null;
   }
 }

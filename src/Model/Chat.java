@@ -1,11 +1,14 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Chat {
+public class Chat implements Serializable {
     private String llname;
     private ArrayList<Message> messages;
     
+    public Chat() {
+    }
 
     public Chat(String llname, ArrayList<Message> messages) {
         this.llname = llname;

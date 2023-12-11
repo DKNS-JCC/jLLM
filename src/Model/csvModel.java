@@ -1,14 +1,26 @@
 package Model;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class csvModel implements ILLM
 {
+    private File file = Paths.get(System.getProperty("user.home"), "Desktop", "jLLM", "input.csv").toFile();
     public csvModel()
     {
     }
     public String speak (String text)
     {
-        return "Hello World";
+        if (file.exists())
+        {
+            
+        }
+        else
+        {
+            return null;
+        }
+        
     }
     public Message createMessage(String text)
     {

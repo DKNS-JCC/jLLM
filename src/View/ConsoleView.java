@@ -43,6 +43,7 @@ public class ConsoleView extends View {
     int option = 0;
 
     do {
+      clearScreen();
       System.out.println("1. Iniciar conversacion");
       System.out.println("2. Listar conversaciones");
       System.out.println("3. Importar/exportar conversaciones");

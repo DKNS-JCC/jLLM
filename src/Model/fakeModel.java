@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class fakeModel implements ILLM{
+public class fakeModel implements ILLM, Serializable{
 
     private ArrayList<Chat> chats = new ArrayList<Chat>();
     private ArrayList<Message> mensajes = new ArrayList<Message>();

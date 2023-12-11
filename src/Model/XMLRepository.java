@@ -29,13 +29,20 @@ public class XMLRepository implements IRepository {
   }
 
   public ArrayList<Chat> importChat() {
+    XmlMapper mapper = new XmlMapper();
     Path ruta = Paths.get(
-      System.getProperty("user.home"),
-      "Desktop",
-      "jLLM",
-      "output.xml"
+            System.getProperty("user.home"),
+            "Desktop",
+            "jLLM",
+            "output.xml"
     );
     File file = ruta.toFile();
-    return new ArrayList<Chat>();
-  }
+
+    try {
+        return mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Chat.class));
+    } catch (Exception e) {
+        System.out.println("Error al importar el chat: " + e.getMessage());
+        return new ArrayList<>();
+    }
+}
 }

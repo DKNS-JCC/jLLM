@@ -1,16 +1,21 @@
 
 package Model;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
     private String sender;
     private String date;
     private String content;
+
 
     // Constructor
     public Message(String sender, String date, String content) {
         this.sender = sender;
         this.date = date;
         this.content = content;
+    }
+    public Message() {
     }
 
     // Getters y Setters
