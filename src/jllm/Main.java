@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
         View view;
-        IRepository repository = null;
+        IRepository repository;
         ILLM modelType;
 
         if (args.length == 3) {
@@ -29,8 +29,8 @@ public class Main {
             modelType = getModelForOption(args[1]);
 
         } else {
-            // Opciones por defecto:
-            view = new TTSView();
+            // Opciones por defecto
+            view = new ConsoleView();
             repository = new XMLRepository();
             modelType = new fakeModel();
         }

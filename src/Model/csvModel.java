@@ -1,7 +1,7 @@
 package Model;
 import java.util.ArrayList;
 
-public class csvModel implements ILLM, IRepository
+public class csvModel implements ILLM
 {
     public csvModel()
     {
@@ -10,15 +10,26 @@ public class csvModel implements ILLM, IRepository
     {
         return "Hello World";
     }
+    public Message createMessage(String text)
+    {
+        return null;
+    }
+    public void saveConversation(Message message)
+    {
+    }
+    public ArrayList<Message> listConversations()
+    {
+        return null;
+    }
     public String getIdentifier()
     {
         return "csvModel";
     }
-    public ArrayList<Chat> importarChat()
+    public ArrayList<Chat> importChat()
     {
         return null;
     }
-    public boolean exportarChat(ArrayList<Chat> chats)
+    public boolean exportChat(ArrayList<Chat> chats)
     {
         return false;
     }

@@ -23,12 +23,12 @@ import Model.IRepository;
 public class Controller {
     View view;
     IRepository repository;
-    ILLM modelType;
+    ILLM model;
 
     public Controller(View viewType, IRepository repositoryType, ILLM modelType) {
         this.view = viewType;
         this.repository = repositoryType;
-        this.modelType = modelType;
+        this.model = modelType;
         view.setController(this);
     }
 
@@ -40,22 +40,22 @@ public class Controller {
 
     //We need to implement this method
     public Message sendMessage(Message messagerecieved) {
-        String response = modelType.speak(messagerecieved.getContent());
-        Message response2 = modelType.createMessage(response);
+        String response = model.speak(messagerecieved.getContent());
+        Message response2 = model.createMessage(response);
         return response2;
     }
 
     public void almacenaConversacion(Message message) {
-        modelType.saveConversation(message);
+        model.saveConversation(message);
     }
 
     public ArrayList<Message> listConversations (){
-        ArrayList <Message> messages = modelType.listConversations();
+        ArrayList <Message> messages = model.listConversations();
         return messages;
     }
 
     public void exportarChat(){
-        modelType.exportarChat();
+        
     }
 
 

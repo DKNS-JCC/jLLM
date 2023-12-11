@@ -2,6 +2,8 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\jorge\\Downloads\\biblioteca18.jar",
-        "c:\\Users\\jorge\\Downloads\\jadapter-for-native-tts-0.12.0.jar"
+        "c:\\Users\\jorge\\Downloads\\jadapter-for-native-tts-0.12.0.jar",
+        "c:\\Users\\Jorge C\\Downloads\\jadapter-for-native-tts-0.12.0.jar",
+        "c:\\Users\\Jorge C\\Downloads\\biblioteca18.jar"
     ]
 }

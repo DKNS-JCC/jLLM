@@ -77,7 +77,7 @@ public class ConsoleView extends View {
                                 break;
                             case 2:
                                 clearScreen();
-                                c.exportChat();
+                                // c.exportChat();
                                 break;
                             case 3:
                                 clearScreen();

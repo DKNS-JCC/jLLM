@@ -68,12 +68,11 @@ public class fakeModel implements ILLM, IRepository {
         } else if (text.contains("aleatorio")) {
             return "El numero aleatorio es: " + (int) (Math.random() * 100000000); // 0-100000000
         } else {
-
             return "No te entiendo";
         }       
     }
 
-    @Override
+    
     public Message createMessage(String text) {
         String formattedTimestamp = Instant.now().atZone(java.time.ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         Message message = new Message(getIdentifier(), formattedTimestamp, text);
@@ -92,11 +91,11 @@ public class fakeModel implements ILLM, IRepository {
         return "fakeModel";
     }
 
-    public ArrayList<Chat> importarChat() {
+    public ArrayList<Chat> importChat() {
         return null;
     }
 
-    public boolean exportarChat(ArrayList<Chat> chats) {
+    public boolean exportChat(ArrayList<Chat> chats) {
         return false;
     }
 }
