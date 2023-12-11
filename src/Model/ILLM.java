@@ -18,5 +18,7 @@ public interface ILLM
     public ArrayList<Chat> listChats();
     //guarda la conversación
     public void saveChat();
+    //establece las conversaciones para importar
+    public void setChats(ArrayList<Chat> chats_n);
 
 }

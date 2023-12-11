@@ -102,6 +102,17 @@ public class fakeModel implements ILLM{
         }
     }
 
+    public void setChats(ArrayList<Chat> chats_n) {
+        if (chats.size() == 0) {
+            this.chats = chats_n;
+        }
+        else {
+            for (Chat chat : chats_n) {
+                chats.add(chat);
+            }
+        }
+    }
+
     public void saveMessage(Message message) {
         mensajes.add(message);
     }

@@ -33,9 +33,9 @@ public class Controller {
 
     //Inicio de la aplicación
     public void initApplication() {
-        view.showAppStart("Hola, bienvenido a LamentableLM estoy a su servicio");
+        view.showAppStart("Hola, bienvenido a javaLLM estoy a su servicio");
         view.showMainMenu();
-        view.showAppEnd("Hasta la próxima! Gracias por usar LamentableLM");
+        view.showAppEnd("Hasta la próxima! Gracias por usar javaLLM");
     }
 
     //Envio y respuesta de mensajes
@@ -68,6 +68,20 @@ public class Controller {
     //Listado de conversaciones
     public ArrayList<Chat> listChats(){
         return model.listChats();
+    }
+
+    //Exportar conversación
+    public boolean exportChat(){
+        ArrayList<Chat> chats = model.listChats();
+        return repository.exportChat(chats);
+    }
+
+    //Importar conversación
+    public boolean importChat(){
+        ArrayList<Chat> chats = repository.importChat();
+        model.setChats(chats);
+        return true;
+        
     }
 
 }
