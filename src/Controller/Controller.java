@@ -4,12 +4,9 @@
  */
 package Controller;
 
-import View.ConsoleView;
-import View.TTSView;
 import View.View;
-import Model.fakeModel;
-import Model.csvModel;
 import Model.Message;
+import Model.Chat;
 
 import java.util.ArrayList;
 
@@ -21,10 +18,12 @@ import Model.IRepository;
  * @author jorge
  */
 public class Controller {
+
     View view;
     IRepository repository;
     ILLM model;
 
+    //Constructor
     public Controller(View viewType, IRepository repositoryType, ILLM modelType) {
         this.view = viewType;
         this.repository = repositoryType;
@@ -32,31 +31,47 @@ public class Controller {
         view.setController(this);
     }
 
+    //Inicio de la aplicación
     public void initApplication() {
         view.showAppStart("Hola, bienvenido a LamentableLM estoy a su servicio");
         view.showMainMenu();
         view.showAppEnd("Hasta la próxima! Gracias por usar LamentableLM");
     }
 
-    //We need to implement this method
+    //Envio y respuesta de mensajes
     public Message sendMessage(Message messagerecieved) {
         String response = model.speak(messagerecieved.getContent());
         Message response2 = model.createMessage(response);
         return response2;
     }
 
-    public void almacenaConversacion(Message message) {
-        model.saveConversation(message);
+    public Message crearMessage(String content) {
+        Message message = model.createMessage(content);
+        return message;
     }
 
-    public ArrayList<Message> listConversations (){
-        ArrayList <Message> messages = model.listConversations();
-        return messages;
+    //Guardado de mensaje
+    public void saveMessage(Message message) {
+        repository.saveMessage(message);
     }
 
-    public void exportarChat(){
-        
+    //Listado de mensajes
+    public ArrayList<Message> listChat (){
+        return repository.listChat();
     }
 
+    public void getIdentifier(){
+        repository.setIdentifier(model.getIdentifier())
+    }
+
+    //Guardado de conversación
+    public void saveChat(){
+        repository.saveChat();
+    }
+
+    //Listado de conversaciones
+    public ArrayList<Chat> listChats(){
+        return repository.listChats();
+    }
 
 }

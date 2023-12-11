@@ -6,9 +6,9 @@ package View;
 
 import Controller.Controller;
 import Model.Message;
+import Model.Chat;
 
 import com.coti.tools.Esdia;
-import com.coti.tools.Esdia.*;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
@@ -53,14 +53,15 @@ public class ConsoleView extends View {
 
             switch (option) {
                 case 1:
-                    clearScreen();    
+                    clearScreen();
                     startConversation();
                     // c.saveChat();
                     break;
                 case 2:
                     clearScreen();
-                    // c.listChat();
+                    listarChats();
                     break;
+
                 case 3:
                     clearScreen();
                     do {
@@ -86,7 +87,7 @@ public class ConsoleView extends View {
                                 System.out.println("Opcion incorrecta");
                         }
                     } while (option != 3);
-                    
+
                     break;
 
                 case 4:
@@ -95,24 +96,57 @@ public class ConsoleView extends View {
                 default:
                     System.out.println("Opcion incorrecta");
             }
-        }while(option!=4);
+        } while (option != 4);
 
     }
 
     public void startConversation() {
         clearScreen();
         while (true) {
-            String formattedTimestamp = Instant.now().atZone(java.time.ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            Message message = new Message(System.getProperty("user.name"),formattedTimestamp , Esdia.readString_ne("Prompt: "));
+            Message message = c.crearMessage(Esdia.readString("Introduce un mensaje: "));
             if (message.getContent().equals("/salir")) {
                 break;
             }
             clearScreen();
-            c.almacenaConversacion(message);
+            c.saveMessage(message);
             Message response = c.sendMessage(message);
-            c.almacenaConversacion(response);
-            for (Message messagep : c.listConversations()) {
-                System.out.println(String.format("%-15s | %-10s | %-20s", messagep.getDate(), messagep.getSender(), messagep.getContent()));
+            c.saveMessage(response);
+            for (Message messagep : c.listChat()) {
+                System.out.println(String.format("%-15s | %-10s | %-20s", messagep.getDate(), messagep.getSender(),
+                        messagep.getContent()));
+            }
+        }
+        c.saveChat(); // Guarda la conversación actual
+    }
+
+    private void listarChats() {
+        if (c.listChats().isEmpty()) {
+            System.out.println("No hay conversaciones disponibles");
+            Esdia.readString("Pulsa cualquier tecla para volver...");
+        } else {
+
+            System.out.println("Conversaciones disponibles:");
+            int i = 0;
+            for (Chat chat : c.listChats()) {
+                System.out.println(String.format("%d. | %-15s | %-20s", i, chat.getLlname(), chat.getMessages().get(0).getContent()));
+                i++;
+            }
+            System.out.println("");
+            System.out.println("1. Ver conversacion");
+            System.out.println("2. Borrar conversacion");
+            System.out.println("3. Volver");
+            int option = Esdia.readInt("Introduce una opcion: ", 1, 3);
+            switch (option) {
+                case 1:
+                    option = Esdia.readInt("Introduce una opcion para ver: ");
+                    break;
+                case 2:
+                    option = Esdia.readInt("Introduce una opcion para borrar: ");
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("Opcion incorrecta");
             }
         }
     }

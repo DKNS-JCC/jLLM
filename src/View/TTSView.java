@@ -159,10 +159,10 @@ public class TTSView extends View {
                 break;
             }
             clearScreen();
-            c.almacenaConversacion(message);
+            c.saveMessage(message);
             Message response = c.sendMessage(message);
-            c.almacenaConversacion(response);
-            for (Message messagep : c.listConversations()) {
+            c.saveMessage(message);
+            for (Message messagep : c.listChat()) {
                 System.out.println(String.format("%-15s | %-10s | %-20s", messagep.getDate(), messagep.getSender(),
                         messagep.getContent()));
             }

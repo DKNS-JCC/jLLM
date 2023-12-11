@@ -2,17 +2,14 @@ package Model;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-public class fakeModel implements ILLM, IRepository {
-    
-    private List<Message> messages = new ArrayList<Message>();
-    
+public class fakeModel implements ILLM{
+     
+    //Constructor
     public fakeModel() {
     }
 
-
+    //Generar respuesta
     public String speak(String text) {
         text = text.toLowerCase();
         if (text.contains("hola")) {
@@ -72,30 +69,16 @@ public class fakeModel implements ILLM, IRepository {
         }       
     }
 
-    
+    //Generar mensaje de respuesta
     public Message createMessage(String text) {
         String formattedTimestamp = Instant.now().atZone(java.time.ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         Message message = new Message(getIdentifier(), formattedTimestamp, text);
         return message;
     }
 
-    public void saveConversation(Message message) {
-        messages.add(message);
-    }
-
-    public ArrayList<Message> listConversations() {
-        return new ArrayList<>(messages);
-    }
-
+    //Mostrat tipo de modelo
     public String getIdentifier() {
         return "fakeModel";
     }
 
-    public ArrayList<Chat> importChat() {
-        return null;
-    }
-
-    public boolean exportChat(ArrayList<Chat> chats) {
-        return false;
-    }
 }

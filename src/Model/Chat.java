@@ -1,13 +1,13 @@
-
 package Model;
-import java.util.List;
+
+import java.util.ArrayList;
 
 public class Chat {
     private String llname;
-    private List<Message> messages;
+    private ArrayList<Message> messages;
     
 
-    public Chat(String llname, List<Message> messages) {
+    public Chat(String llname, ArrayList<Message> messages) {
         this.llname = llname;
         this.messages = messages;
     }
@@ -16,7 +16,7 @@ public class Chat {
         return llname;
     }
 
-    public List<Message> getMessages() {
+    public ArrayList<Message> getMessages() {
         return messages;
     }
 
@@ -24,7 +24,7 @@ public class Chat {
         this.llname = llname;
     }
 
-    public void setMessages(List<Message> messages) {
+    public void setMessages(ArrayList<Message> messages) {
         this.messages = messages;
     }
     
