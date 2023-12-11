@@ -5,9 +5,13 @@ import View.View;
 import View.ConsoleView;
 import View.TTSView;
 import Model.fakeModel;
+import Model.smartModel;
 import Model.csvModel;
 import Model.XMLRepository;
 import Model.JSONRepository;
+
+import java.io.Console;
+
 import Controller.Controller;
 import Model.ILLM;
 import Model.IRepository;
@@ -31,8 +35,8 @@ public class Main {
         } else {
             // Opciones por defecto
             view = new ConsoleView();
-            repository = new XMLRepository();
-            modelType = new fakeModel();
+            repository = new JSONRepository();
+            modelType = new smartModel();
         }
 
         Controller c = new Controller(view, repository, modelType);

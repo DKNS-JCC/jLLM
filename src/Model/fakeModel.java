@@ -15,6 +15,7 @@ public class fakeModel implements ILLM, Serializable{
     }
 
     //Generar respuesta
+    @Override
     public String speak(String text) {
         text = text.toLowerCase();
         if (text.contains("hola")) {
@@ -75,6 +76,7 @@ public class fakeModel implements ILLM, Serializable{
     }
 
     //Generar mensaje de respuesta
+    @Override
     public Message createMessage(String text) {
         String formattedTimestamp = Instant.now().atZone(java.time.ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         Message message = new Message(getIdentifier(), formattedTimestamp, text);
@@ -82,18 +84,22 @@ public class fakeModel implements ILLM, Serializable{
     }
 
     //Mostrat tipo de modelo
+    @Override
     public String getIdentifier() {
         return "fakeModel";
     }
 
+    @Override
     public ArrayList<Chat> listChats() {
         return chats; // Devuelve la lista de conversaciones
     }
 
+    @Override
     public ArrayList<Message> listChat() {
         return mensajes; // Devuelve la lista de mensajes
     }
 
+    @Override
     public void saveChat() {
         // Añade la conversación actual a la lista de conversaciones
         if (!mensajes.isEmpty()) {
@@ -103,6 +109,7 @@ public class fakeModel implements ILLM, Serializable{
         }
     }
 
+    @Override
     public void setChats(ArrayList<Chat> chats_n) {
         if (chats.size() == 0) {
             this.chats = chats_n;
@@ -114,6 +121,7 @@ public class fakeModel implements ILLM, Serializable{
         }
     }
 
+    @Override
     public void saveMessage(Message message) {
         mensajes.add(message);
     }
