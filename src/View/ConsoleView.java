@@ -100,6 +100,7 @@ public class ConsoleView extends View {
 
     }
 
+    // Conversacion principal
     public void startConversation() {
         clearScreen();
         while (true) {
@@ -121,33 +122,63 @@ public class ConsoleView extends View {
 
     private void listarChats() {
         if (c.listChats().isEmpty()) {
+
             System.out.println("No hay conversaciones disponibles");
             Esdia.readString("Pulsa cualquier tecla para volver...");
-        } else {
 
-            System.out.println("Conversaciones disponibles:");
-            int i = 0;
-            for (Chat chat : c.listChats()) {
-                System.out.println(String.format("%d. | %-15s | %-20s", i, chat.getLlname(), chat.getMessages().get(0).getContent()));
-                i++;
-            }
-            System.out.println("");
-            System.out.println("1. Ver conversacion");
-            System.out.println("2. Borrar conversacion");
-            System.out.println("3. Volver");
-            int option = Esdia.readInt("Introduce una opcion: ", 1, 3);
-            switch (option) {
-                case 1:
-                    option = Esdia.readInt("Introduce una opcion para ver: ");
-                    break;
-                case 2:
-                    option = Esdia.readInt("Introduce una opcion para borrar: ");
-                    break;
-                case 3:
-                    break;
-                default:
-                    System.out.println("Opcion incorrecta");
-            }
+        } else {
+            int option = 0;
+            do {
+                clearScreen();
+                System.out.println("Conversaciones disponibles:");
+                int i = 1;
+                for (Chat chat : c.listChats()) {
+                    System.out.println(
+                            String.format("%d. | %-10s | %d mensajes | %-20s", i, chat.getMessages().get(0).getDate(),
+                                    chat.getMessages().size(), chat.getMessages().get(0).getContent()));
+                    i++;
+                }
+                System.out.println("");
+                System.out.println("1. Ver conversacion");
+                System.out.println("2. Borrar conversacion");
+                System.out.println("3. Volver");
+                option = Esdia.readInt("Introduce una opcion: ", 1, 3);
+                switch (option) {
+                    case 1:
+                        option = Esdia.readInt("Introduce una opcion para ver: ");
+                        clearScreen();
+                        for (Message messagep : c.listChats().get(option - 1).getMessages()) {
+                            System.out.println(
+                                    String.format("%-15s | %-10s | %-20s", messagep.getDate(), messagep.getSender(),
+                                            messagep.getContent()));
+                        }
+                        Esdia.readString("Pulsa cualquier tecla para volver...");
+                        break;
+                    case 2:
+                        option = Esdia.readInt("Introduce una opcion para borrar: ");
+                        for (Message messagep : c.listChats().get(option - 1).getMessages()) {
+                            System.out.println(
+                                    String.format("%-15s | %-10s | %-20s", messagep.getDate(), messagep.getSender(),
+                                            messagep.getContent()));
+                        }
+                        String confirm = Esdia
+                                .readString_ne("¿Estas seguro de que quieres borrar esta conversacion? (s/N): ");
+                        if (confirm.equals("s") || confirm.equals("S")) {
+                            c.listChats().remove(option - 1);
+                            System.out.println("Conversacion borrada");
+                            Esdia.readString("Pulsa cualquier tecla para volver...");
+                        } else {
+                            System.out.println("Conversacion no borrada");
+                            Esdia.readString("Pulsa cualquier tecla para volver...");
+                        }
+                        clearScreen();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Opcion incorrecta");
+                }
+            } while (option != 3 && !c.listChats().isEmpty());
         }
     }
 

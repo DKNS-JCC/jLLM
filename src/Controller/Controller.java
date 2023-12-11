@@ -52,26 +52,22 @@ public class Controller {
 
     //Guardado de mensaje
     public void saveMessage(Message message) {
-        repository.saveMessage(message);
+        model.saveMessage(message);
     }
 
     //Listado de mensajes
     public ArrayList<Message> listChat (){
-        return repository.listChat();
-    }
-
-    public void getIdentifier(){
-        repository.setIdentifier(model.getIdentifier())
+        return model.listChat();
     }
 
     //Guardado de conversación
     public void saveChat(){
-        repository.saveChat();
+        model.saveChat();
     }
 
     //Listado de conversaciones
     public ArrayList<Chat> listChats(){
-        return repository.listChats();
+        return model.listChats();
     }
 
 }

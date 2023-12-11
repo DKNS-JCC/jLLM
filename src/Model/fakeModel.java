@@ -2,8 +2,12 @@ package Model;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class fakeModel implements ILLM{
+
+    private ArrayList<Chat> chats = new ArrayList<Chat>();
+    private ArrayList<Message> mensajes = new ArrayList<Message>();
      
     //Constructor
     public fakeModel() {
@@ -79,6 +83,27 @@ public class fakeModel implements ILLM{
     //Mostrat tipo de modelo
     public String getIdentifier() {
         return "fakeModel";
+    }
+
+    public ArrayList<Chat> listChats() {
+        return chats; // Devuelve la lista de conversaciones
+    }
+
+    public ArrayList<Message> listChat() {
+        return mensajes; // Devuelve la lista de mensajes
+    }
+
+    public void saveChat() {
+        // Añade la conversación actual a la lista de conversaciones
+        if (!mensajes.isEmpty()) {
+            Chat chat_nuevo = new Chat(getIdentifier() , new ArrayList<>(mensajes));
+            chats.add(chat_nuevo);
+            mensajes.clear(); // Borra la conversación actual
+        }
+    }
+
+    public void saveMessage(Message message) {
+        mensajes.add(message);
     }
 
 }
