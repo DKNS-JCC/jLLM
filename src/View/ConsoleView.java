@@ -106,7 +106,7 @@ public class ConsoleView extends View {
     clearScreen();
     while (true) {
       Message message = c.crearMessage(
-        Esdia.readString("Introduce un mensaje: ")
+        Esdia.readString("Introduce un mensaje: "), System.getProperty("user.name")
       );
       if (message.getContent().equals("/salir")) {
         break;

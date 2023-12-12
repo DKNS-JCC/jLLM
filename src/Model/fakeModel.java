@@ -2,19 +2,20 @@ package Model;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class fakeModel implements ILLM, Serializable{
+public class fakeModel implements ILLM, Serializable {
 
     private ArrayList<Chat> chats = new ArrayList<Chat>();
     private ArrayList<Message> mensajes = new ArrayList<Message>();
-     
-    //Constructor
+
+    // Constructor
     public fakeModel() {
     }
 
-    //Generar respuesta
+    // Generar respuesta
     @Override
     public String speak(String text) {
         text = text.toLowerCase();
@@ -62,7 +63,7 @@ public class fakeModel implements ILLM, Serializable{
             return "La guerra es un conflicto armado entre dos o más grupos humanos";
         } else if (text.contains("salud")) {
             return "La salud es un estado de bienestar";
-        } else if (text.contains("+") || text.contains("-") || text.contains("/") || text.contains("*") ) {
+        } else if (text.contains("+") || text.contains("-") || text.contains("/") || text.contains("*")) {
             return "No soy una calculadora mister";
         } else if (text.contains("como")) {
             return "Comiendo lomo";
@@ -72,18 +73,25 @@ public class fakeModel implements ILLM, Serializable{
             return "El numero aleatorio es: " + (int) (Math.random() * 100000000); // 0-100000000
         } else {
             return "No te entiendo";
-        }       
+        }
     }
 
-    //Generar mensaje de respuesta
+    // Generar mensaje de respuesta
     @Override
-    public Message createMessage(String text) {
-        String formattedTimestamp = Instant.now().atZone(java.time.ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Message message = new Message(getIdentifier(), formattedTimestamp, text);
-        return message;
+    public Message createMessage(String text, String user) {
+        String formattedTimestamp = Instant
+                .now()
+                .atZone(ZoneOffset.UTC)
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        if (user == null) {
+            return new Message(getIdentifier(), formattedTimestamp, text);
+        } else {
+            return new Message(user, formattedTimestamp, text);
+        }
     }
 
-    //Mostrat tipo de modelo
+    // Mostrat tipo de modelo
     @Override
     public String getIdentifier() {
         return "fakeModel";
@@ -103,7 +111,7 @@ public class fakeModel implements ILLM, Serializable{
     public void saveChat() {
         // Añade la conversación actual a la lista de conversaciones
         if (!mensajes.isEmpty()) {
-            Chat chat_nuevo = new Chat(getIdentifier() , new ArrayList<>(mensajes));
+            Chat chat_nuevo = new Chat(getIdentifier(), new ArrayList<>(mensajes));
             chats.add(chat_nuevo);
             mensajes.clear(); // Borra la conversación actual
         }
@@ -113,8 +121,7 @@ public class fakeModel implements ILLM, Serializable{
     public void setChats(ArrayList<Chat> chats_n) {
         if (chats.size() == 0) {
             this.chats = chats_n;
-        }
-        else {
+        } else {
             for (Chat chat : chats_n) {
                 chats.add(chat);
             }

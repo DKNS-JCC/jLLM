@@ -13,6 +13,7 @@ public class JSONRepository implements IRepository {
 
   public JSONRepository() {}
 
+  @Override
   public boolean exportChat(ArrayList<Chat> chats) {
     Gson gson = new Gson();
     String json = gson.toJson(chats);
@@ -35,6 +36,7 @@ public class JSONRepository implements IRepository {
     }
   }
 
+  @Override
   public ArrayList<Chat> importChat() {
     Path ruta = Paths.get(
       System.getProperty("user.home"),

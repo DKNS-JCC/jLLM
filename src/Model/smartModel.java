@@ -2,20 +2,20 @@ package Model;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import io.github.amithkoujalgi.ollama4j.core.OllamaAPI;
 
-
 public class smartModel implements ILLM, Serializable {
-    
+
     private ArrayList<Chat> chats = new ArrayList<Chat>();
     private ArrayList<Message> mensajes = new ArrayList<Message>();
 
     // Constructor
     public smartModel() {
-        
+
     }
 
     // Generar respuesta
@@ -24,22 +24,26 @@ public class smartModel implements ILLM, Serializable {
         String host = "http://localhost:11434";
         OllamaAPI ollamaAPI = new OllamaAPI(host);
         try {
-            String response = ollamaAPI.ask("mistral",text);
+            String response = ollamaAPI.ask("mistral", text);
             return response;
         } catch (Exception e) {
             return e.getMessage();
         }
     }
-    
+
     // Generar mensaje de respuesta
     @Override
-    public Message createMessage(String text) {
+    public Message createMessage(String text, String user) {
         String formattedTimestamp = Instant
                 .now()
-                .atZone(java.time.ZoneOffset.UTC)
+                .atZone(ZoneOffset.UTC)
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Message message = new Message(getIdentifier(), formattedTimestamp, text);
-        return message;
+
+        if (user == null) {
+            return new Message(getIdentifier(), formattedTimestamp, text);
+        } else {
+            return new Message(user, formattedTimestamp, text);
+        }
     }
 
     // Mostrat tipo de modelo

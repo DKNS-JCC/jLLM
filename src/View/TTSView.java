@@ -126,7 +126,7 @@ public class TTSView extends View {
     } while (option != 4);
   }
 
-  //Funcion para hablar
+  // Funcion para hablar
   private void hablar(String msg) {
     try {
       SpeechEngine speechEngine = SpeechEngineNative.getInstance();
@@ -139,7 +139,7 @@ public class TTSView extends View {
       Voice voice = speechEngine.findVoiceByPreferences(voicePreferences);
 
       if (voice == null) {
-        voice = voices.get(0); // default voice
+        voice = voices.get(0);
       }
 
       speechEngine.setVoice(voice.getName());
@@ -158,8 +158,7 @@ public class TTSView extends View {
     clearScreen();
     while (true) {
       Message message = c.crearMessage(
-        Esdia.readString("Introduce un mensaje: ")
-      );
+          Esdia.readString("Introduce un mensaje: "), System.getProperty("user.name"));
       if (message.getContent().equals("/salir")) {
         break;
       }
@@ -169,13 +168,11 @@ public class TTSView extends View {
       c.saveMessage(response);
       for (Message messagep : c.listChat()) {
         System.out.println(
-          String.format(
-            "%-15s | %-10s | %-20s",
-            messagep.getDate(),
-            messagep.getSender(),
-            messagep.getContent()
-          )
-        );
+            String.format(
+                "%-15s | %-10s | %-20s",
+                messagep.getDate(),
+                messagep.getSender(),
+                messagep.getContent()));
       }
       hablar(response.getContent());
     }
@@ -196,14 +193,12 @@ public class TTSView extends View {
         int i = 1;
         for (Chat chat : c.listChats()) {
           System.out.println(
-            String.format(
-              "%d. | %-10s | %d mensajes | %-20s",
-              i,
-              chat.getMessages().get(0).getDate(),
-              chat.getMessages().size(),
-              chat.getMessages().get(0).getContent()
-            )
-          );
+              String.format(
+                  "%d. | %-10s | %d mensajes | %-20s",
+                  i,
+                  chat.getMessages().get(0).getDate(),
+                  chat.getMessages().size(),
+                  chat.getMessages().get(0).getContent()));
           i++;
         }
         System.out.println("");
@@ -220,17 +215,15 @@ public class TTSView extends View {
             option = Esdia.readInt("Introduce una opcion para ver: ");
             clearScreen();
             for (Message messagep : c
-              .listChats()
-              .get(option - 1)
-              .getMessages()) {
+                .listChats()
+                .get(option - 1)
+                .getMessages()) {
               System.out.println(
-                String.format(
-                  "%-15s | %-10s | %-20s",
-                  messagep.getDate(),
-                  messagep.getSender(),
-                  messagep.getContent()
-                )
-              );
+                  String.format(
+                      "%-15s | %-10s | %-20s",
+                      messagep.getDate(),
+                      messagep.getSender(),
+                      messagep.getContent()));
             }
             hablar("Pulsa cualquier tecla para volver...");
             Esdia.readString("...");
@@ -239,22 +232,19 @@ public class TTSView extends View {
             hablar("Que conversación quieres borrar?");
             option = Esdia.readInt("Introduce una opcion para borrar: ");
             for (Message messagep : c
-              .listChats()
-              .get(option - 1)
-              .getMessages()) {
+                .listChats()
+                .get(option - 1)
+                .getMessages()) {
               System.out.println(
-                String.format(
-                  "%-15s | %-10s | %-20s",
-                  messagep.getDate(),
-                  messagep.getSender(),
-                  messagep.getContent()
-                )
-              );
+                  String.format(
+                      "%-15s | %-10s | %-20s",
+                      messagep.getDate(),
+                      messagep.getSender(),
+                      messagep.getContent()));
             }
             hablar("Confima que quieres borrar esta conversación");
             String confirm = Esdia.readString_ne(
-              "¿Estas seguro de que quieres borrar esta conversacion? (s/N): "
-            );
+                "¿Estas seguro de que quieres borrar esta conversacion? (s/N): ");
             if (confirm.equals("s") || confirm.equals("S")) {
               c.listChats().remove(option - 1);
               hablar("Conversacion borrada");

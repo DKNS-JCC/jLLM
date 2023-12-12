@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Collections;
@@ -73,15 +74,20 @@ public class csvModel implements ILLM, Serializable {
     }
     
     // Generar mensaje de respuesta
-    @Override
-    public Message createMessage(String text) {
-        String formattedTimestamp = Instant
-                .now()
-                .atZone(java.time.ZoneOffset.UTC)
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Message message = new Message(getIdentifier(), formattedTimestamp, text);
-        return message;
+@Override
+public Message createMessage(String text, String user) {
+    String formattedTimestamp = Instant
+            .now()
+            .atZone(ZoneOffset.UTC)
+            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    
+    if (user == null) {
+        return new Message(getIdentifier(), formattedTimestamp, text);
+    } else {
+        return new Message(user, formattedTimestamp, text);
     }
+}
+
 
     // Mostrat tipo de modelo
     @Override

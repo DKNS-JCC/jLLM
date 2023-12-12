@@ -80,12 +80,12 @@ public class Controller {
   //Envio y respuesta de mensajes
   public Message sendMessage(Message messagerecieved) {
     String response = model.speak(messagerecieved.getContent());
-    Message response2 = model.createMessage(response);
+    Message response2 = model.createMessage(response, null);
     return response2;
   }
 
-  public Message crearMessage(String content) {
-    Message message = model.createMessage(content);
+  public Message crearMessage(String content, String user) {
+    Message message = model.createMessage(content, user);
     return message;
   }
 

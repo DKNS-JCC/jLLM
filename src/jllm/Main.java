@@ -34,7 +34,7 @@ public class Main {
             // Opciones por defecto
             view = new ConsoleView();
             repository = new JSONRepository();
-            modelType = new csvModel();
+            modelType = new fakeModel();
         }
 
         Controller c = new Controller(view, repository, modelType);

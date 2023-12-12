@@ -9,7 +9,7 @@ public interface ILLM
     //devuelve el identificador del modelo
     public String getIdentifier();
     //crea un mensaje (remitente, fecha, contenido)
-    public Message createMessage(String text);
+    public Message createMessage(String text, String user);
     //guarda un mensaje
     public void saveMessage(Message message);
     //lista los mensajes
