@@ -10,8 +10,6 @@ import Model.csvModel;
 import Model.XMLRepository;
 import Model.JSONRepository;
 
-import java.io.Console;
-
 import Controller.Controller;
 import Model.ILLM;
 import Model.IRepository;
@@ -36,7 +34,7 @@ public class Main {
             // Opciones por defecto
             view = new ConsoleView();
             repository = new JSONRepository();
-            modelType = new smartModel();
+            modelType = new csvModel();
         }
 
         Controller c = new Controller(view, repository, modelType);
@@ -73,7 +71,7 @@ public class Main {
             case "csv":
                 return new csvModel();
             case "smart":
-                // return new smartModel();
+                return new smartModel();
             default:
                 return new fakeModel();
         }

@@ -10,8 +10,6 @@ import io.github.jonelo.jAdapterForNativeTTS.engines.Voice;
 import io.github.jonelo.jAdapterForNativeTTS.engines.VoicePreferences;
 import io.github.jonelo.jAdapterForNativeTTS.engines.exceptions.SpeechEngineCreationException;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TTSView extends View {
@@ -24,7 +22,6 @@ public class TTSView extends View {
 
   @Override
   public void showAppStart(String message) {
-    hablar(message);
     System.out.println("                   _");
     System.out.println("               _  / |");
     System.out.println("              / \\ | | /\\");
@@ -37,6 +34,7 @@ public class TTSView extends View {
     System.out.println("                [_____]");
     System.out.println("                |     |");
     System.out.println("                 HOLA!");
+    hablar(message);
   }
 
   @Override
