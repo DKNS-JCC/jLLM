@@ -1,0 +1,17 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\jorge\\Downloads\\biblioteca11.jar",
+        "c:\\Users\\jorge\\Downloads\\gson-2.10.1.jar",
+        "c:\\Users\\jorge\\Downloads\\jackson-annotations-2.15.3.jar",
+        "c:\\Users\\jorge\\Downloads\\jackson-core-2.15.3.jar",
+        "c:\\Users\\jorge\\Downloads\\jackson-databind-2.15.3.jar",
+        "c:\\Users\\jorge\\Downloads\\jackson-dataformat-xml-2.15.3.jar",
+        "c:\\Users\\jorge\\Downloads\\jadapter-for-native-tts-0.12.0.jar",
+        "c:\\Users\\jorge\\Downloads\\log4j-core-2.21.1.jar",
+        "c:\\Users\\jorge\\Downloads\\ollama4j-1.0-20231113.065639-69.jar",
+        "c:\\Users\\jorge\\Downloads\\slf4j-api-2.0.9.jar",
+        "c:\\Users\\jorge\\Downloads\\slf4j-simple-2.0.9.jar",
+        "c:\\Users\\jorge\\Downloads\\stax2-api-4.0.0.jar"
+    ]
+}

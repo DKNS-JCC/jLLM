@@ -4,6 +4,7 @@ package jllm;
 import View.View;
 import View.ConsoleView;
 import View.TTSView;
+import View.TempView;
 import Model.fakeModel;
 import Model.smartModel;
 import Model.csvModel;
@@ -31,10 +32,11 @@ public class Main {
             modelType = getModelForOption(args[1]);
 
         } else {
-            // Opciones por defecto
-            view = new ConsoleView();
-            repository = new JSONRepository();
-            modelType = new fakeModel();
+            TempView tempview = new TempView();
+            args = tempview.showPreMainMenu().split(" ");
+            view = getViewForOption(args[2]);
+            repository = getRepositoryForOption(args[0]);
+            modelType = getModelForOption(args[1]);
         }
 
         Controller c = new Controller(view, repository, modelType);
