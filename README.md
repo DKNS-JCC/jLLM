@@ -19,4 +19,5 @@ Welcome to jLLM, a sophisticated Java program that brings dynamic conversational
         ```
      3. Initiate requests to the API through port 11434.
 
+(TRABAJO CORREGIDO INJUSTAMENTENTE POR LA USAL 6/11)
 
